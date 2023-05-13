@@ -27,13 +27,3 @@ body {
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
-
-.github {
-  margin-top: 10px;
-  color: white;
-}
-
-.github a {
-  color: hotpink;
-  text-decoration: none;
-}
