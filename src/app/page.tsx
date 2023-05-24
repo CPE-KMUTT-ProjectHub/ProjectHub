@@ -10,7 +10,10 @@ const Home: React.FC = (): JSX.Element => {
       <div className="text-2xl">KMUTT Project HUB</div>
       <div className="text-xl">Coming Soon....</div>
       <Link to="https://github.com/CPE-KMUTT-ProjectHub" target="_black">
-        <GoMarkGithub /> Github
+        <div className="flex flex-row gap-1 items-center justify-center">
+          <GoMarkGithub />
+          Github
+        </div>
       </Link>
     </main>
   )
