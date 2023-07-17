@@ -1,11 +1,9 @@
-'use client';
+'use client'
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-const navigation = [
-  { name: 'Sign in', href: '/signin', current: true },
-]
+const navigation = [{ name: 'Sign in', href: '/signin', current: true }]
 
 function classNames(...classNamees: string[]) {
   return classNamees.filter(Boolean).join(' ')
@@ -31,12 +29,13 @@ export default function navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                    <Link className='text-black text-2xl font-bold' href={'/'}>CPE 🐜</Link>
+                  <Link className="text-black text-2xl font-bold" href={'/'}>
+                    CPE 🐜
+                  </Link>
                 </div>
-              
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
