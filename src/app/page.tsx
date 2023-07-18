@@ -1,4 +1,4 @@
-import Navbar from '@/components/navbar/navbar'
+import Navbar from '@/components/Navbar'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 const Home: React.FC = (): JSX.Element => {
   return (
