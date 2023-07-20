@@ -1,7 +1,5 @@
-import Link from '@/components/Link'
-import Image from 'next/image'
-import Navbar from '@/components/navbar/navbar'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import Navbar from '@/components/Navbar'
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 const Home: React.FC = (): JSX.Element => {
   return (
     <>
