@@ -1,12 +1,13 @@
 'use client'
 
 import './globals.css'
+import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { SessionProvider } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+const metadata: Metadata = {
   title: 'Project Hub | KMUTT',
   description: 'Explore new possibility',
 }

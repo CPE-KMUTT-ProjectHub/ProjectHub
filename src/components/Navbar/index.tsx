@@ -12,7 +12,7 @@ interface INav {
   href: string
 }
 
-const navigation: INav[] = [{ name: 'Test', href: '/', current: true }]
+const navigation: INav[] = [{ name: 'Home', href: '/', current: true }]
 
 function classNames(...classNames: string[]) {
   return classNames.filter(Boolean).join(' ')
