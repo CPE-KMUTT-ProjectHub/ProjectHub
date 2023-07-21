@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import { Suspense } from 'react'
 import '../app/globals.css'
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/navbar/navbar'
 import { useRouter } from 'next/router'
 
 export default function App({ Component, pageProps }: AppProps) {
