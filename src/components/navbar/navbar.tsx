@@ -19,9 +19,7 @@ function classNames(...classNames: string[]) {
 }
 
 export default function Navbar() {
-  const { data: userData } = useSession()
-
-  const isUserNotAuthenticated = userData === null || userData === undefined
+  const { data: session, status } = useSession()
 
   return (
     <Disclosure as="nav" className="bg-white">
@@ -77,7 +75,20 @@ export default function Navbar() {
                           {item.name}
                         </Link>
                       ))}
-                      {isUserNotAuthenticated ? (
+                      {status === 'authenticated' ? (
+                        <div className="relative">
+                          <div
+                            onClick={() => signOut()}
+                            className={classNames(
+                              'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
+                              'rounded-full px-3 py-2 text-sm font-medium'
+                            )}
+                          >
+                            Sign Out
+                          </div>
+                          <div className="text-black">session.name</div>
+                        </div>
+                      ) : (
                         <div
                           onClick={() => signIn()}
                           className={classNames(
@@ -85,17 +96,7 @@ export default function Navbar() {
                             'rounded-full px-3 py-2 text-sm font-medium'
                           )}
                         >
-                          Sign in
-                        </div>
-                      ) : (
-                        <div
-                          onClick={() => signOut()}
-                          className={classNames(
-                            'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
-                            'rounded-full px-3 py-2 text-sm font-medium'
-                          )}
-                        >
-                          Sign out
+                          Sign In
                         </div>
                       )}
                     </div>
