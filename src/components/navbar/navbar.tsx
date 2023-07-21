@@ -59,7 +59,7 @@ export default function Navbar() {
                       id="search"
                       name="search"
                       className="block w-full rounded-full border-0 bg-white py-1.5 pl-10 pr-3 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:leading-6"
-                      placeholder="Search OpenMirai"
+                      placeholder="Search"
                       type="search"
                     />
                   </div>
