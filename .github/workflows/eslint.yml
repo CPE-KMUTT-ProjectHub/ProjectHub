@@ -2,9 +2,9 @@ name: ESLint
 
 on:
   push:
-    branches: ["main", "dev"]
+    branches: ['main', 'dev']
   pull_request:
-    branches: ["main", "dev"]
+    branches: ['main', 'dev']
 
 jobs:
   eslint:
@@ -27,8 +27,9 @@ jobs:
       - name: Setup Node.js with pnpm
         uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
-          cache: "pnpm"
+          node-version: '18.x'
+          cache: 'pnpm'
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
