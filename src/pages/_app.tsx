@@ -7,25 +7,14 @@ import { Suspense } from 'react'
 import '../app/globals.css'
 import Navbar from '@/components/navbar/navbar'
 import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react"
 
 export default function App({ Component, pageProps }: AppProps) {
   const location = useRouter()
 
-  const renderNavbar = () => {
-    switch (location.pathname) {
-      case '/auth/sign-in':
-        return
-      default:
-        return <Navbar />
-    }
-  }
-
   return (
-    <Suspense fallback={<Loading />}>
-      <SessionProvider session={pageProps.session}>
-        {renderNavbar()}
-        <Component {...pageProps} />
-      </SessionProvider>
-    </Suspense>
+    <SessionProvider session={pageProps.session}>
+    <Component {...pageProps} />
+  </SessionProvider>
   )
 }
