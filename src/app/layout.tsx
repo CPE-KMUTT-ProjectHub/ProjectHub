@@ -1,6 +1,7 @@
 import { Montserrat, Mulish, Nunito } from 'next/font/google'
 import './globals.css'
 import AuthProvider from '@/components/AuthProvider'
+import Navbar from '@/components/navbar/navbar'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -18,7 +19,10 @@ export default function RootLayout({ children, Session }: { children: React.Reac
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${nunito.variable} ${mulish.variable} overscroll-none`}>
-        <AuthProvider session={Session}>{children}</AuthProvider>
+        <AuthProvider session={Session}>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )
