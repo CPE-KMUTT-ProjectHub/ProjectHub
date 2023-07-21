@@ -1,7 +1,6 @@
 import { Montserrat, Mulish, Nunito } from 'next/font/google'
 import './globals.css'
-import AuthProvider from '@/components/AuthProvider'
-import Navbar from '@/components/navbar/navbar'
+import AuthProvider from '@/components/AuthProvider/authprovider'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -15,14 +14,11 @@ export const metadata = {
   description: 'Explore new possibility',
 }
 
-export default function RootLayout({ children, Session }: { children: React.ReactNode; Session: any }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${nunito.variable} ${mulish.variable} overscroll-none`}>
-        <AuthProvider session={Session}>
-          <Navbar />
-          {children}
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   )
