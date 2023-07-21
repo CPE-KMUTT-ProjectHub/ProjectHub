@@ -2,7 +2,7 @@
 
 import { Fragment } from 'react'
 import { Disclosure } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
@@ -40,13 +40,33 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center justify-between sm:items-stretch">
                 <div className="flex flex-shrink-0 items-center">
                   <Link className="text-black text-2xl font-bold" href={'/'}>
                     CPE 🐜
                   </Link>
                 </div>
-              </div>
+              
+              <div className="hidden w-full md:inline-block md:max-w-xs lg:w-full">
+                  <label htmlFor="search" className="sr-only">
+                    Search
+                  </label>
+                  <div className="relative">
+                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                      <MagnifyingGlassIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <input
+                      id="search"
+                      name="search"
+                      className="block w-full rounded-full border-0 bg-white py-1.5 pl-10 pr-3 text-sm text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:leading-6"
+                      placeholder="Search OpenMirai"
+                      type="search"
+                    />
+                  </div>
+                </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -85,6 +105,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">
