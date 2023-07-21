@@ -46,17 +46,14 @@ export default function Navbar() {
                     CPE 🐜
                   </Link>
                 </div>
-              
-              <div className="hidden w-full md:inline-block md:max-w-xs lg:w-full">
+
+                <div className="hidden w-full md:inline-block md:max-w-xs lg:w-full">
                   <label htmlFor="search" className="sr-only">
                     Search
                   </label>
                   <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                      <MagnifyingGlassIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
+                      <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                     </div>
                     <input
                       id="search"
@@ -67,45 +64,45 @@ export default function Navbar() {
                     />
                   </div>
                 </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
-                    {navigation.map((item: INav, i: number) => (
-                      <Link
-                        key={i}
-                        href={item.href}
-                        className={'text-black rounded-full px-3 py-2 text-sm font-medium'}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                    {isUserNotAuthenticated ? (
-                      <div
-                        onClick={() => signIn()}
-                        className={classNames(
-                          'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
-                          'rounded-full px-3 py-2 text-sm font-medium'
-                        )}
-                      >
-                        Sign in
-                      </div>
-                    ) : (
-                      <div
-                        onClick={() => signOut()}
-                        className={classNames(
-                          'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
-                          'rounded-full px-3 py-2 text-sm font-medium'
-                        )}
-                      >
-                        Sign out
-                      </div>
-                    )}
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                  <div className="hidden sm:ml-6 sm:block">
+                    <div className="flex space-x-4">
+                      {navigation.map((item: INav, i: number) => (
+                        <Link
+                          key={i}
+                          href={item.href}
+                          className={'text-black rounded-full px-3 py-2 text-sm font-medium'}
+                          aria-current={item.current ? 'page' : undefined}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                      {isUserNotAuthenticated ? (
+                        <div
+                          onClick={() => signIn()}
+                          className={classNames(
+                            'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
+                            'rounded-full px-3 py-2 text-sm font-medium'
+                          )}
+                        >
+                          Sign in
+                        </div>
+                      ) : (
+                        <div
+                          onClick={() => signOut()}
+                          className={classNames(
+                            'text-white bg-[#4A60AC] hover:bg-[#394a87] hover:text-white cursor-pointer',
+                            'rounded-full px-3 py-2 text-sm font-medium'
+                          )}
+                        >
+                          Sign out
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
 
           <Disclosure.Panel className="sm:hidden">

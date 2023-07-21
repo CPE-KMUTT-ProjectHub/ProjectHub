@@ -1,5 +1,3 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-
 const Home: React.FC = (): JSX.Element => {
   return (
     <>
