@@ -37,6 +37,7 @@ create `.env` and add this
 DATABASE_URL="<database-url>"
 GITHUB_ID=<github-oauth-id>
 GITHUB_SECRET=<github-oauth-secret>
+GITHUB_TOKEN=<github-access-token>
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET=<next-auth-secret>
 ```
