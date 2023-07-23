@@ -86,7 +86,6 @@ export default function Navbar() {
                           >
                             Sign Out
                           </div>
-                          <div className="text-black">session.name</div>
                         </div>
                       ) : (
                         <div

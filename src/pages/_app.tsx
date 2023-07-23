@@ -7,6 +7,7 @@ import '../app/globals.css'
 import Navbar from '@/components/navbar/navbar'
 import { useRouter } from 'next/router'
 import AuthProvider from '@/components/AuthProvider/authprovider'
+import OrgCheck from '@/components/OrgCheck'
 
 export default function App({ Component, pageProps }: AppProps) {
   const location = useRouter()
@@ -15,6 +16,10 @@ export default function App({ Component, pageProps }: AppProps) {
     switch (location.pathname) {
       case '/auth/sign-in':
         return
+
+      case '/403':
+        return
+
       default:
         return <Navbar />
     }
@@ -23,8 +28,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       <Suspense fallback={<Loading />}>
-        {navbarRouteFilter()}
-        <Component {...pageProps} />
+        <OrgCheck>
+          {navbarRouteFilter()}
+          <Component {...pageProps} />
+        </OrgCheck>
       </Suspense>
     </AuthProvider>
   )

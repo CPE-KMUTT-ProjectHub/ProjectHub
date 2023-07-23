@@ -20,8 +20,7 @@ export default async function test(req: NextApiRequest, res: NextApiResponse) {
       } catch (err: Error | unknown) {
         await prisma.$disconnect()
 
-        if (err instanceof Error) console.error(err)
-        return res.status(500)
+        if (err instanceof Error) return res.status(500)
       }
     }
   }
