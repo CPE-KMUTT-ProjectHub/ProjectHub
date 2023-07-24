@@ -1,25 +1,20 @@
 'use client'
 
-import { Fragment } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { signIn, signOut, useSession } from 'next-auth/react'
-
-interface INav {
-  name: string
-  current: boolean
-  href: string
-}
-
-const navigation: INav[] = [{ name: 'Home', href: '/', current: true }]
+import { INav, navigation } from '@/constants/navigation'
+import Loading from '../Loading'
 
 function classNames(...classNames: string[]) {
   return classNames.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
-  const { data: session, status } = useSession()
+  const { status } = useSession()
+
+  if (status === 'loading') return <Loading />
 
   return (
     <Disclosure as="nav" className="bg-white">

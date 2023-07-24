@@ -1,6 +1,6 @@
 import { Montserrat, Mulish, Nunito } from 'next/font/google'
 import './globals.css'
-import AuthProvider from '@/components/AuthProvider/authprovider'
+import AuthProvider from '@/components/AuthProvider'
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',

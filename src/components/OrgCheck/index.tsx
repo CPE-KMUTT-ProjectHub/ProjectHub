@@ -1,18 +1,20 @@
+import { FORBIDDEN_PAGE } from '@/constants/route'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { ReactNode, useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 
 type Props = {
-  children?: ReactNode
+  element: JSX.Element
 }
 
-const OrgCheck: React.FC<Props> = ({ children }): JSX.Element => {
-  const router = useRouter()
+const OrgCheck: React.FC<Props> = ({ element }): JSX.Element => {
+  const location = useRouter()
 
   const [username, setUsername] = useState<string>('')
-  const [isLoading, setLoading] = useState<boolean>(true)
   const { data: userData } = useSession()
+
+  const isAuthenticated = !!userData
 
   const getGithubUsername = async <T extends string | null | undefined>(email: T): Promise<void> => {
     if (typeof email === 'string') {
@@ -21,25 +23,25 @@ const OrgCheck: React.FC<Props> = ({ children }): JSX.Element => {
     }
   }
 
-  const checkPermission = useCallback(
-    async (username: string): Promise<void> => {
-      if (typeof username === 'string' && username) {
-        const { data } = await axios.get(`/api/github/permission?username=${username}`)
-        if (data === 'Forbidden') router.push('/403')
-        setLoading(false)
-      }
-    },
-    [router]
-  )
+  const checkUserPermission = async (username: string): Promise<void> => {
+    if (typeof username === 'string' && username) {
+      const { data } = await axios.get(`/api/github/permission?username=${username}`)
+      if (data === 'Forbidden') location.push(FORBIDDEN_PAGE)
+    }
+  }
 
-  useEffect(() => {
+  const checkSessionPermission = <T extends JSX.Element>(element: T): T => {
     getGithubUsername(userData?.user?.email)
-    checkPermission(username)
-  }, [userData?.user?.email, username, checkPermission])
+    checkUserPermission(username)
+    return element
+  }
 
-  if (isLoading) return <div>Loading</div>
+  const bypassPermission = <T extends JSX.Element>(element: T) => {
+    return element
+  }
 
-  return <div>{children}</div>
+  if (isAuthenticated) return checkSessionPermission(element)
+  else return bypassPermission(element)
 }
 
 export default OrgCheck

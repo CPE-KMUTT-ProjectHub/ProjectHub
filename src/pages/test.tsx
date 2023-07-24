@@ -3,14 +3,14 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/react'
-
-const MOCK_UP_IMAGE_URL =
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLp4L3veZJOIdsquJBilO9p9MnEf1qO1QBIQ&usqp=CAU'
+import Image from 'next/image'
 
 const Test: React.FC = (): JSX.Element => {
-  const { data } = useSession()
+  const { data: userData, status } = useSession()
   const [apiRes, setApiResponse] = useState<number>(0)
   const [text, setText] = useState<string>('')
+
+  const isAuthenticated = status === 'authenticated'
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -25,17 +25,30 @@ const Test: React.FC = (): JSX.Element => {
     setApiResponse(data.id)
   }
 
+  if (status === 'loading') return <div></div>
+
   return (
     <div>
-      <div>{JSON.stringify(data)}</div>
-      <h3>Welcome, {data?.user?.name}</h3>
-      <img src={data?.user?.image ?? MOCK_UP_IMAGE_URL} alt="image" className="rounded-full" />
-      <p>ID: {apiRes}</p>
-      <input type="text" id="text" name="text" onChange={handleChange} />
-      <button onClick={apiHandler}>click here</button>
-      <div>
-        {data ? <button onClick={() => signOut()}>sign out</button> : <button onClick={() => signIn()}>sign in</button>}
-      </div>
+      {isAuthenticated ? (
+        <>
+          <h3>Welcome, {userData?.user?.name}</h3>
+          {userData?.user?.image && (
+            <Image src={userData.user.image} width={250} height={250} alt="image" className="rounded-full" />
+          )}
+          <p>ID: {apiRes}</p>
+          <input type="text" id="text" name="text" onChange={handleChange} />
+          <button onClick={apiHandler}>click here</button>
+          <div>
+            {userData ? (
+              <button onClick={() => signOut()}>sign out</button>
+            ) : (
+              <button onClick={() => signIn()}>sign in</button>
+            )}
+          </div>
+        </>
+      ) : (
+        <div>User is not sign in</div>
+      )}
     </div>
   )
 }
