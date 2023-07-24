@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../api/auth/[...nextauth]'
 import { FaGithub } from 'react-icons/fa'
 import Image from 'next/image'
-import Logo from '../../images/KMUTT_LOGO.png'
+import Logo from '@/images/KMUTT_LOGO.png'
 
 export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (

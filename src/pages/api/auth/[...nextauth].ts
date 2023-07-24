@@ -3,6 +3,7 @@ import type { NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { prisma } from '@/app/api/prismaClient'
+import { SIGN_IN_PAGE } from '@/constants/route'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,7 +15,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   pages: {
-    signIn: '/auth/sign-in',
+    signIn: SIGN_IN_PAGE,
   },
 }
 
