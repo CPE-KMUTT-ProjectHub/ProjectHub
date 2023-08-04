@@ -17,7 +17,7 @@ const Test: React.FC = (): JSX.Element => {
     setText(e.target.value)
   }
 
-  const apiHandler = async () => {
+  const addText = async () => {
     const { data } = await axios.post('/api/test', {
       text,
     })
@@ -37,7 +37,7 @@ const Test: React.FC = (): JSX.Element => {
           )}
           <p>ID: {apiRes}</p>
           <input type="text" id="text" name="text" onChange={handleChange} />
-          <button onClick={apiHandler}>click here</button>
+          <button onClick={addText}>click here</button>
           <div>
             {userData ? (
               <button onClick={() => signOut()}>sign out</button>

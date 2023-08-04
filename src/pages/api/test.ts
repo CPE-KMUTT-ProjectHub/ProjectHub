@@ -2,7 +2,6 @@ import { prisma } from '@/app/api/prismaClient'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function test(req: NextApiRequest, res: NextApiResponse) {
-  await prisma.$connect()
   switch (req.method) {
     case 'GET': {
       const response = await prisma.test.findMany()
@@ -18,8 +17,6 @@ export default async function test(req: NextApiRequest, res: NextApiResponse) {
 
         return res.status(200).json({ id })
       } catch (err: Error | unknown) {
-        await prisma.$disconnect()
-
         if (err instanceof Error) return res.status(500)
       }
     }
