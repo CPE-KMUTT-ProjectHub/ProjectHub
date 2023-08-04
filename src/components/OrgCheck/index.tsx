@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
+import Loading from '../Loading'
 
 type Props = {
   element: JSX.Element
@@ -12,11 +13,11 @@ type Props = {
 const OrgCheck: React.FC<Props> = ({ element }): JSX.Element => {
   const location = useRouter()
 
-  const { data: userData } = useSession()
+  const { data: userData, status } = useSession()
 
   const [username, setUsername] = useState<string>('')
 
-  const isAuthenticated = !!userData
+  const isAuthenticated = !!userData // !IMPORTANT: Don't touch it, It's already works lol
 
   const getGithubUsername = async <T extends string | null | undefined>(email: T): Promise<void> => {
     if (typeof email === 'string') {
@@ -42,6 +43,8 @@ const OrgCheck: React.FC<Props> = ({ element }): JSX.Element => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated, username])
+
+  if (status === 'loading') return <Loading />
 
   return element
 }
