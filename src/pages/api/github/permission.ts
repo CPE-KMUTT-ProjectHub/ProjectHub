@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).json({ userData })
     } catch {
-      return res.send('Forbidden')
+      return res.json({ status: 403 })
     }
   }
 }

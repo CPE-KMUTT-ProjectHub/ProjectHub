@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+
 const Home: React.FC = (): JSX.Element => {
   return (
     <>

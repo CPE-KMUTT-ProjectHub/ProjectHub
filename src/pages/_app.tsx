@@ -8,10 +8,9 @@ import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/router'
 import AuthProvider from '@/components/AuthProvider'
 import { FORBIDDEN_PAGE, SIGN_IN_PAGE } from '@/constants/route'
-import dynamic from 'next/dynamic'
+import OrgCheck from '@/components/OrgCheck'
 
 // Lazy loading : will show loading before render the page (kinda like caching)
-const OrgCheck = dynamic(() => import('@/components/OrgCheck'))
 
 export default function App({ Component, pageProps }: AppProps) {
   const location = useRouter()
